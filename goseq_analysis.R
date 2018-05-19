@@ -1,13 +1,5 @@
 # Go-seq analysis and KEGG pathway analysis. 
 
-
-# #location of library in computerome
-# library("goseq", lib.loc="/services/tools/R/3.2.5/lib64/R/library")
-# library("GO.db", lib.loc="/services/tools/R/3.2.5/lib64/R/library")
-# library("org.Rn.eg.db", lib.loc="/services/tools/R/3.2.5/lib64/R/library")
-# library("KEGGgraph")
-# library(pathview)
-
 # location of library in work-pc
 library("goseq", lib.loc = "C:/Program Files/R/R-3.2.3/library")
 library("GO.db", lib.loc="C:/Program Files/R/R-3.2.3/library")
@@ -16,7 +8,7 @@ library("KEGGgraph", lib.loc="C:/Program Files/R/R-3.2.3/library")
 library("pathview", lib.loc="C:/Program Files/R/R-3.2.3/library")
 library("biomaRt", lib.loc="C:/Program Files/R/R-3.2.3/library")
 
-# The code is seprated accordingly by tissues TG and DRG. 
+# The code is seprated accordingly by tissues TG and DRG. There are examples of what the result look like. 
 
 ################################# TG ##############################################
 
