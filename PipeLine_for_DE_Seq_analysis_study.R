@@ -2,14 +2,6 @@
 # Deseq Analysis for Naive_Rats (Taconic vs Envigo)   #
 #######################################################
 
-#Note: To read about DESeq how to do's type: vignette("DESeq2")
-# Abbreviations:
-#Taconic rats = Taco
-#Envigo rats = Envi 
-
-# setwd("/home/people/prasing/Master_Thesis/scripts/")
-# getwd()
-
 #loading libraries (computerome)
 library("ggplot2")
 library("reshape2")
@@ -21,22 +13,10 @@ library("WriteXLS")
 library("regionReport")
 library("ggfortify")
 
-
-# # loading the libraries (work pc)
-# library("ggplot2")
-# library("reshape2")
-# library("DESeq2", lib.loc="C:/Program Files/R/R-3.2.3/library")
-# library("plyr")
-# library("pheatmap", lib.loc="C:/Program Files/R/R-3.2.3/library")
-# library("RColorBrewer")
-# library("WriteXLS", lib.loc="C:/Program Files/R/R-3.2.3/library")
-# library("ggfortify", lib.loc="C:/Program Files/R/R-3.2.3/library")
-
 getwd()
 
 # load sample table computerome.
 load("/home/people/prasing/Master_Thesis/scripts/sample_table_naive.R")
-
 
 
 # Directory with HTSeq count data for Naive rats
@@ -71,14 +51,13 @@ Norm_filt_DEseq_data_TG <- estimateSizeFactors(filt_DEseq_data_TG)
 dim(Norm_filt_DEseq_data_TG)
 #[1] 22102    12
 
-# # Extracting the count dataset.
+# Extracting the count dataset.
 # filt_norm_TG_cou <- as.data.frame(counts(Norm_filt_DEseq_data_TG, normalized = TRUE))
 # dim(filt_norm_TG_cou)
 
 # Extracting counts per sample. 
 filt_TG_cou_Taco <- cou_data[,1:6]
 filt_TG_cou_Envi <- cou_data[,7:12]
- 
  
  
 #"""""""""""" Calcualting coffeficient of variation for (TG) tissue. before DE testing """"""""""""""
@@ -176,19 +155,6 @@ nbinom_DEseq_data_TG <- nbinomWaldTest(disper_DEseq_data_TG)
 dim(nbinom_DEseq_data_TG)
 #[1] 22102    12
 
-
-# Extracting the results from nbinominalWald test.
-#res_nbinom_TG <- results(nbinom_DEseq_data_TG)
-
-# Ordering the result based on p.adj and vlaues with NA are collected together. 
-#res_ordered_TG <- res_nbinom_TG[order(res_nbinom_TG$padj),]
-
-# summary of results
-#summary(res_nbinom_TG)
-
-# How many genes adjusted p-values were less than 0.1?
-#sum(res_ordered_TG$padj < 0.1, na.rm=TRUE)
-
 # Adjusting the p-value to 0.05
 # TG
 res_TG_new_Pval <- results(nbinom_DEseq_data_TG, alpha=0.05)
@@ -281,7 +247,6 @@ DE_means_TG_envi <- rowMeans(all_TG_genes_Envigo[,1:6], na.rm = TRUE, dims = 1)
 DE_log2_means_TG_envi <- log2(DE_means_TG_envi)
 DE_log2_means_TG_envi <- as.data.frame(DE_log2_means_TG_envi)
 all_TG_genes_Envigo$means <- DE_log2_means_TG_envi$DE_log2_means_TG_envi
-
 
 
 res_TG_taco_envi <- as.data.frame(res_TG_new_Pval)
